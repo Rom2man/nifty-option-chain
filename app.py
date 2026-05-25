@@ -500,17 +500,23 @@ if st.session_state.raw_data:
         df_f["CE_GR"] = df_f.apply(lambda r: coi_growth_formula(r["CE_OI"], r["CE_COI"]), axis=1)
 
         # PE COI Growth = SUM(W5:W15) = all strikes in range
-        pe_coi_g = round(df_f["PE_GR"].sum(), 2)
+        pe_coi_g_local = round(df_f["PE_GR"].sum(), 2)
         # CE COI Growth = SUM(X5:X15) = all strikes in range
-        ce_coi_g = round(df_f["CE_GR"].sum(), 2)
+        ce_coi_g_local = round(df_f["CE_GR"].sum(), 2)
 
         # ITM PE = SUM(R10:R15) = PE_GR for ATM strike and 5 below (put ITM)
         # ITM CE = SUM(D5:D10) = CE_GR for ATM strike and 5 above (call ITM)
         atm_idx_f = (abs(df_f["STRIKE"] - atm_strike)).argmin()
-        itm_pe_rows = df_f.iloc[max(0, atm_idx_f):min(len(df_f), atm_idx_f+6)]   # ATM + 5 below (PE ITM)
-        itm_ce_rows = df_f.iloc[max(0, atm_idx_f-5):atm_idx_f+1]                 # ATM + 5 above (CE ITM)
-        itm_pe = round(itm_pe_rows["PE_GR"].sum(), 2)
-        itm_ce = round(itm_ce_rows["CE_GR"].sum(), 2)
+        itm_pe_rows = df_f.iloc[max(0, atm_idx_f):min(len(df_f), atm_idx_f+6)]
+        itm_ce_rows = df_f.iloc[max(0, atm_idx_f-5):atm_idx_f+1]
+        itm_pe_local = round(itm_pe_rows["PE_GR"].sum(), 2)
+        itm_ce_local = round(itm_ce_rows["CE_GR"].sum(), 2)
+
+        # ── Use Detailed Calculations page values if available (more accurate) ──
+        pe_coi_g = st.session_state.get("dc_pe_growth_total", pe_coi_g_local)
+        ce_coi_g = st.session_state.get("dc_ce_growth_total", ce_coi_g_local)
+        itm_pe   = st.session_state.get("dc_itm_pe",          itm_pe_local)
+        itm_ce   = st.session_state.get("dc_itm_ce",          itm_ce_local)
 
         # Store prev_df for future use (not needed for this formula but kept for compatibility)
         st.session_state.prev_df = df_f[["STRIKE","CE_OI","CE_COI","CE_VOL","PE_OI","PE_COI","PE_VOL","CE_PCOI","PE_PCOI"]].copy()
@@ -680,21 +686,3 @@ else:
     st.info("⏳ Loading data...")
     time.sleep(2)
     st.rerun()
-# Read values (with fallback default if not yet computed)
-pe_growth  = st.session_state.get("pe_growth_total", 0)
-ce_growth  = st.session_state.get("ce_growth_total", 0)
-itm_pe     = st.session_state.get("itm_pe", 0)
-itm_ce     = st.session_state.get("itm_ce", 0)
-
-# Insert into your recording table
-recording_data = {
-    "Metric": ["🔺 PE Growth (Total)", "🔻 CE Growth (Total)", "💰 ITM PE", "💰 ITM CE"],
-    "Value":  [
-        f"{pe_growth:+.2f}%",
-        f"{ce_growth:+.2f}%",
-        f"{itm_pe:+.2f}%",
-        f"{itm_ce:+.2f}%",
-    ]
-}
-
-st.dataframe(pd.DataFrame(recording_data), use_container_width=True, hide_index=True)
