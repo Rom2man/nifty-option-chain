@@ -151,6 +151,14 @@ itm_ce_df = (
 itm_pe_total = round(itm_pe_df["PE_PCOI"].sum(), 2)
 itm_ce_total = round(itm_ce_df["CE_PCOI"].sum(), 2)
 
+# ── Push to session_state so app.py recording table picks them up ──
+tot_pe_growth_pre = df_f["PE_GROWTH"].sum()
+tot_ce_growth_pre = df_f["CE_GROWTH"].sum()
+st.session_state["dc_pe_growth_total"] = round(tot_pe_growth_pre, 2)
+st.session_state["dc_ce_growth_total"] = round(tot_ce_growth_pre, 2)
+st.session_state["dc_itm_pe"]          = itm_pe_total
+st.session_state["dc_itm_ce"]          = itm_ce_total
+
 # ── Display Summary Metrics ───────────────────────────────
 st.markdown('<div class="section-hdr">📊 Summary Metrics</div>', unsafe_allow_html=True)
 m1, m2, m3, m4, m5, m6 = st.columns(6)
@@ -289,8 +297,3 @@ st.success(f"""
 - **ITM PE (6 above): {itm_pe_total:+.2f}%**
 - **ITM CE (6 below): {itm_ce_total:+.2f}%**
 """)
-# After computing your metrics, store them:
-st.session_state["pe_growth_total"] = pe_growth_total      # e.g. +6296.90
-st.session_state["ce_growth_total"] = ce_growth_total      # e.g. -142.72
-st.session_state["itm_pe"] = itm_pe_value                  # e.g. +4839.63
-st.session_state["itm_ce"] = itm_ce_value                  # e.g. -311.23
