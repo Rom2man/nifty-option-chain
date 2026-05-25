@@ -680,3 +680,21 @@ else:
     st.info("⏳ Loading data...")
     time.sleep(2)
     st.rerun()
+# Read values (with fallback default if not yet computed)
+pe_growth  = st.session_state.get("pe_growth_total", 0)
+ce_growth  = st.session_state.get("ce_growth_total", 0)
+itm_pe     = st.session_state.get("itm_pe", 0)
+itm_ce     = st.session_state.get("itm_ce", 0)
+
+# Insert into your recording table
+recording_data = {
+    "Metric": ["🔺 PE Growth (Total)", "🔻 CE Growth (Total)", "💰 ITM PE", "💰 ITM CE"],
+    "Value":  [
+        f"{pe_growth:+.2f}%",
+        f"{ce_growth:+.2f}%",
+        f"{itm_pe:+.2f}%",
+        f"{itm_ce:+.2f}%",
+    ]
+}
+
+st.dataframe(pd.DataFrame(recording_data), use_container_width=True, hide_index=True)
