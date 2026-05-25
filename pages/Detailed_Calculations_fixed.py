@@ -289,3 +289,8 @@ st.success(f"""
 - **ITM PE (6 above): {itm_pe_total:+.2f}%**
 - **ITM CE (6 below): {itm_ce_total:+.2f}%**
 """)
+# After computing your metrics, store them:
+st.session_state["pe_growth_total"] = pe_growth_total      # e.g. +6296.90
+st.session_state["ce_growth_total"] = ce_growth_total      # e.g. -142.72
+st.session_state["itm_pe"] = itm_pe_value                  # e.g. +4839.63
+st.session_state["itm_ce"] = itm_ce_value                  # e.g. -311.23
