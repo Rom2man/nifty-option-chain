@@ -52,6 +52,9 @@ st.title("📈 Nifty Option Chain")
 for k,v in {"cookie":"","cookie_time":0,"raw_data":None,"last_fetch":0,"open_price":0,"history":[],"oi_multiplier":50,"prev_close":0,"open_spot":0}.items():
     if k not in st.session_state: st.session_state[k]=v
 
+# Initialize recording state if not present
+if "is_recording" not in st.session_state: st.session_state.is_recording = False
+
 COOKIE_REFRESH=300; DATA_REFRESH=60
 
 def mround(val,multiple): return math.floor(val/multiple+0.5)*multiple
@@ -166,7 +169,7 @@ def bar_cell(value, max_val, fmt_val, color="blue"):
     pct_w = min(100, abs(value)/max_val*100) if max_val else 0
     return f'<td class="bar-cell"><div class="bar-bg-{color}" style="width:{pct_w:.1f}%"></div><span class="bar-text">{fmt_val}</span></td>'
 
-# ── Controls ──────────────────────────────────────────────
+# ── Controls ──────────────────────────────────────────────────
 c1,c2,c3,c4,c5 = st.columns([1, 1.5, 1, 1, 1])
 with c1: symbol = st.selectbox("Symbol",["NIFTY","BANKNIFTY","FINNIFTY"])
 
@@ -176,7 +179,7 @@ with c2:
     expiry = st.selectbox("Expiry Date", expiry_list)
 
 with c3: auto_refresh = st.toggle("🔄 Auto Refresh", value=True)
-with c4: is_recording = st.toggle("⏺️ Record Data", value=False)
+with c4: st.session_state.is_recording = st.toggle("⏺️ Record Data", value=st.session_state.is_recording)
 with c5: manual_btn = st.button("⚡ Refresh Now", use_container_width=True)
 
 cs1, cs2, cs3 = st.columns([2,1,1])
@@ -307,7 +310,7 @@ if st.session_state.raw_data:
             else:                 return "Neutral"
         decision = get_decision(pcr)
 
-        if is_recording:
+        if st.session_state.is_recording:
             current_time = datetime.now().strftime("%H:%M:%S")
             if not st.session_state.history or st.session_state.history[-1]["Time"] != current_time:
                 st.session_state.history.append({
