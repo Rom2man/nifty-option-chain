@@ -175,8 +175,26 @@ with c1: symbol = st.selectbox("Symbol",["NIFTY","BANKNIFTY","FINNIFTY"])
 
 if "expiry_dates" not in st.session_state: st.session_state.expiry_dates=[]
 with c2:
-    expiry_list = st.session_state.expiry_dates if st.session_state.expiry_dates else ["26-May-2026"]
-    expiry = st.selectbox("Expiry Date", expiry_list)
+    if not st.session_state.expiry_dates and st.session_state.cookie:
+        try:
+            st.session_state.expiry_dates = fetch_expiry_dates(
+                symbol,
+                st.session_state.cookie
+            )
+        except:
+            pass
+
+    expiry_list = st.session_state.expiry_dates
+
+    if not expiry_list:
+        st.info("Loading expiry dates...")
+        st.stop()
+
+    expiry = st.selectbox(
+        "Expiry Date",
+        expiry_list,
+        index=0
+    )
 with c3: auto_refresh = st.toggle("🔄 Auto Refresh", value=True)
 with c4: st.session_state.is_recording = st.toggle("⏺️ Record Data", value=st.session_state.is_recording)
 with c5: manual_btn = st.button("⚡ Refresh Now", use_container_width=True)
