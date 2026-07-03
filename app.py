@@ -175,7 +175,7 @@ with c1: symbol = st.selectbox("Symbol",["NIFTY","BANKNIFTY","FINNIFTY"])
 
 if "expiry_dates" not in st.session_state: st.session_state.expiry_dates=[]
 with c2:
-    expiry_list = st.session_state.expiry_dates if st.session_state.expiry_dates else ["30-Jun-2026"]
+    expiry_list = st.session_state.expiry_dates if st.session_state.expiry_dates else ["07-Jul-2026"]
     expiry = st.selectbox("Expiry Date", expiry_list)
 
 with c3: auto_refresh = st.toggle("🔄 Auto Refresh", value=True)
