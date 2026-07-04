@@ -20,7 +20,7 @@ st.markdown("""
         color:#2E7D32; font-weight:700; display:inline-block; font-size:17px;
     }
     .rec-table { width:100%; border-collapse:collapse; font-size:17px; margin-top: 10px; }
-    .rec-table th { background:#1565C0; color:white; padding:4px 6px; text-align:center; font-size:15px; font-weight:700; border:1px solid #1976D2; line-height:1.2; position:sticky; top:0; }
+    .rec-table th { background:#1565C0; color:white; padding:4px 6px; text-align:center; font-size:21px; font-weight:700; border:1px solid #1976D2; line-height:1.2; position:sticky; top:0; }
     .rec-table td { padding:3px 6px; text-align:center; border:1px solid #E0E0E0; font-size:12px; font-weight:600; white-space:nowrap; }
     .rec-table tr:nth-child(even) td { background:#F8F9FA; }
     .rec-table tr:first-child td { background:#E3F2FD !important; font-weight:800 !important; }
