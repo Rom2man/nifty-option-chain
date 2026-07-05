@@ -19,7 +19,7 @@ st.markdown("""
     }
     .cookie-ok {
         background:#E8F5E9; padding:5px 12px; border-radius:6px;
-        color:#2E7D32; font-weight:700; display:inline-block; font-size:13px;
+        color:#2E7D32; font-weight:700; display:inline-block; font-size:93px;
     }
     .rec-table { width:auto; border-collapse:collapse; font-size:95px; margin-top: 10px; table-layout:fixed; }
     .rec-table th { background:#1565C0; color:white; padding:3px 2px; text-align:center; font-size:10px; font-weight:700; border:1px solid #1976D2; line-height:1.15; position:sticky; top:0; overflow:hidden; }
