@@ -19,9 +19,9 @@ st.markdown("""
     }
     .cookie-ok {
         background:#E8F5E9; padding:5px 12px; border-radius:6px;
-        color:#2E7D32; font-weight:700; display:inline-block; font-size:1px;
+        color:#2E7D32; font-weight:700; display:inline-block; font-size:11px;
     }
-    .rec-table { width:auto; border-collapse:collapse; font-size:95px; margin-top: 19px; table-layout:fixed; }
+    .rec-table { width:auto; border-collapse:collapse; font-size:95px; margin-top: 11px; table-layout:fixed; }
     .rec-table th { background:#1565C0; color:white; padding:5px 6px; text-align:center; font-size:15px; font-weight:700; border:1px solid #1976D2; line-height:1.15; position:sticky; top:0; overflow:hidden; }
     .rec-table td { padding:4px 5px; text-align:center; border:1px solid #E0E0E0; font-size:15px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .rec-table tr:nth-child(even) td { background:#F8F9FA; }
