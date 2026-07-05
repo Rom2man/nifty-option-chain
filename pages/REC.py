@@ -15,7 +15,7 @@ st.markdown("""
     .spot-bar {
         background:linear-gradient(90deg,#1565C0,#1976D2);
         padding:10px 18px; border-radius:10px; color:white;
-        font-size:15px; font-weight:bold; margin-bottom:10px;
+        font-size:10px; font-weight:bold; margin-bottom:10px;
     }
     .cookie-ok {
         background:#E8F5E9; padding:5px 12px; border-radius:6px;
