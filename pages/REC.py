@@ -22,8 +22,8 @@ st.markdown("""
         color:#2E7D32; font-weight:700; display:inline-block; font-size:13px;
     }
     .rec-table { width:auto; border-collapse:collapse; font-size:11px; margin-top: 12px; table-layout:fixed; }
-    .rec-table th { background:#1565C0; color:white; padding:3px 2px; text-align:center; font-size:16px; font-weight:700; border:1px solid #1976D2; line-height:1.15; position:sticky; top:0; overflow:hidden; }
-    .rec-table td { padding:2px 3px; text-align:center; border:1px solid #E0E0E0; font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .rec-table th { background:#1565C0; color:white; padding:4px 5px; text-align:center; font-size:16px; font-weight:700; border:1px solid #1976D2; line-height:1.15; position:sticky; top:0; overflow:hidden; }
+    .rec-table td { padding:3px 4px; text-align:center; border:1px solid #E0E0E0; font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .rec-table tr:nth-child(even) td { background:#F8F9FA; }
     .rec-table tr:first-child td { background:#E3F2FD !important; font-weight:800 !important; }
     .pos { color:#2E7D32; font-weight:800; }
