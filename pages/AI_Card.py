@@ -138,7 +138,7 @@ def parse_data(json_data):
 c1, c2, c3, c4 = st.columns([1, 1.5, 1, 1])
 with c1: symbol = st.selectbox("Symbol", ["NIFTY", "BANKNIFTY", "FINNIFTY"], key="ai_symbol")
 with c2:
-    expiry_list = st.session_state.ai_expiry_dates if st.session_state.ai_expiry_dates else ["30-Jun-2026"]
+    expiry_list = st.session_state.ai_expiry_dates if st.session_state.ai_expiry_dates else ["07-Jul-2026"]
     expiry = st.selectbox("Expiry Date", expiry_list, key="ai_expiry")
 with c3: auto_refresh = st.toggle("🔄 Auto Refresh", value=True, key="ai_auto_refresh")
 with c4: manual_btn = st.button("⚡ Refresh Now", use_container_width=True, key="ai_manual_btn")
