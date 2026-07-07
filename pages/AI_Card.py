@@ -46,7 +46,7 @@ st.markdown("""
     .ev-neg { color:#C62828; }
     .prob-wrap { padding:16px 22px 20px 22px; }
     .prob-row { display:flex; align-items:center; margin-bottom:10px; font-size:14px; font-weight:700; }
-    .prob-label { width:90px; color:#333; }
+    .prob-label { width:auto; color:#333; }
     .prob-bar-bg { flex:1; background:#ECEFF1; border-radius:6px; height:18px; overflow:hidden; margin:0 10px; }
     .prob-bar-fill { height:100%; border-radius:6px; }
     .stars { color:#F9A825; font-size:18px; letter-spacing:2px; }
