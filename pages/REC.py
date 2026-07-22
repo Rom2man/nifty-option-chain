@@ -249,7 +249,7 @@ def get_decision(pcr_val):
 c1, c2, c3, c4, c5 = st.columns([1, 1.5, 1, 1, 1])
 with c1: symbol = st.selectbox("Symbol", ["NIFTY", "BANKNIFTY", "FINNIFTY"], key="rec_symbol")
 with c2:
-    expiry_list = st.session_state.rec_expiry_dates if st.session_state.rec_expiry_dates else ["21-Jul-2026"]
+    expiry_list = st.session_state.rec_expiry_dates if st.session_state.rec_expiry_dates else ["28-Jul-2026"]
     expiry = st.selectbox("Expiry Date", expiry_list, key="rec_expiry")
 with c3: auto_refresh = st.toggle("🔄 Auto Fetch", value=True, key="rec_auto_refresh")
 with c4: st.session_state.rec_is_recording = st.toggle("⏺️ Record Data", value=st.session_state.rec_is_recording)
